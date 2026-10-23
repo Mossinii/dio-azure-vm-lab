@@ -1,28 +1,24 @@
-# ☁️ Deploy de Infraestrutura Linux na Azure (Ubuntu Server)
+# Laboratório: máquina virtual Linux no Microsoft Azure
 
-## 📌 Visão Geral do Projeto
-Este repositório documenta o provisionamento de uma Máquina Virtual (VM) na Microsoft Azure para o desafio da DIO. O foco foi aplicar boas práticas de governança, segurança de rede e conectividade remota via SSH.
+> Exercício pessoal de cloud realizado manualmente. Este repositório não contém IaC, scripts de provisionamento ou pipeline de CI/CD; descreve um laboratório, não uma implantação automatizada nem um ambiente de produção.
 
-## 🛠️ Especificações Técnicas
-- **Máquina:** Standard D2s v3 (2 vCPUs, 8 GiB RAM)
-- **Sistema Operacional:** Ubuntu Server 24.04 LTS (x64)
-- **Localização:** West US
-- **Segurança:** Autenticação via par de chaves RSA (SSH)
-- **Network Security Group (NSG):** Porta 22 (SSH) liberada para administração.
+## Escopo documentado
 
-## 🛡️ Diferenciais de Implementação (NETZ Strategy)
-- **Higiene de Nuvem:** Configuração de exclusão automática de IP público e placa de rede (NIC) ao deletar a VM para evitar custos residuais.
-- **Resolução de Problemas:** Adaptação de SKU (de B1s para D2s v3) para contornar limitações de cota regional, garantindo a entrega do projeto.
-- **Segurança:** Desativação de login por senha, utilizando exclusivamente chaves criptográficas.
+- Máquina virtual com Ubuntu Server 24.04 LTS.
+- Tamanho registrado no exercício: Standard D2s v3.
+- Acesso administrativo por SSH e regras de rede associadas à VM.
+- Exercício realizado no contexto de um desafio/estudo da DIO.
 
-## 📸 Evidências do Projeto
+A região e o escopo exato da regra SSH não são afirmados aqui porque as evidências disponíveis não são consistentes. Também não afirmo que login por senha foi desativado, que recursos são removidos automaticamente ou que a infraestrutura pode ser recriada sem intervenção.
 
-### 1. Provisionamento Concluído
-![Painel Azure](./02-vm-config.png)
+## Evidência
 
-### 2. Conectividade e Acesso Remoto (SSH)
-![Acesso Terminal](./03-access-ssh.png)
-> Como demonstrado na imagem, o acesso foi realizado com sucesso via terminal, confirmando a integridade das regras de firewall e chaves de segurança.
+![Captura genérica do portal Azure](NETZ-CLOUD-03.png)
 
----
-🚀 *Projeto desenvolvido por Kauan - Foco em Cloud & Infraestrutura NETZ.*
+Esta captura genérica é a única imagem mantida na branch atual. As outras capturas foram omitidas por conterem endereços IP, identificadores de assinatura ou nomes de recursos. A remoção da branch atual não apaga versões antigas do histórico Git; uma eventual reescrita do histórico é uma operação separada.
+
+## Segurança e custos
+
+Antes de expor uma VM de laboratório, restrinja SSH no Network Security Group às origens administrativas necessárias; não deixe a porta 22 aberta para qualquer origem. Verifique os recursos públicos e os custos da assinatura e remova recursos que não estejam mais em uso. A exclusão de recursos é destrutiva e deve ocorrer somente depois de confirmar o que será apagado.
+
+As capturas são evidências visuais limitadas: não substituem configuração versionada, logs ou testes reproduzíveis. Não inclua IPs, IDs de assinatura, nomes internos ou credenciais em futuras capturas.
